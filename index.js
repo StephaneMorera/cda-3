@@ -1,19 +1,21 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5050;
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 
-const warehouseRoutes = require('./routes/warehouseRoute');
-const inventoryRoutes = require('./routes/inventoryRoute');
+const warehouseRoutes = require("./routes/warehouseRoute");
+const inventoryRoutes = require("./routes/inventoryRoute");
 
-app.get('/', (_req, res) => {
+app.get("/", (_req, res) => {
   res.send("Welcome to my API");
 });
 
-app.use('/warehouses', warehouseRoutes);
-app.use('/inventories', inventoryRoutes);
+app.use("/warehouses", warehouseRoutes);
+app.use("/inventories", inventoryRoutes);
 
 app.listen(PORT, () => {
   console.log(`running at http://localhost:${PORT}`);
